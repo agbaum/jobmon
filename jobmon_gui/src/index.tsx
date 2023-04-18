@@ -10,12 +10,19 @@ import {
 } from "react-router-dom";
 import WorkflowDetails from './workflow_details_page/workflow_details_page'
 import TaskDetails from './task_details_page/task_details';
+import PluginManager from "./plugins/PluginManager";
+
+// Create a new instance of the plugin manager
+const pluginManager = new PluginManager();
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
   <HashRouter>
+    <header>
+        {pluginManager.renderPlugins()}
+    </header>
     <Routes>
       <Route path="workflow">
         <Route path=":workflowId/tasks" element={<WorkflowDetails subpage="tasks" />} />
